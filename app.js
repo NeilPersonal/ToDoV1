@@ -3,6 +3,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
+const date = require(__dirname + "/date.js");
+
 const app = express();
 
 let listItems = [];
@@ -13,24 +15,21 @@ app.use(express.static("public"));
 
 app.get("/", function (req, res) {
 	console.log("Hello");
-	//Todo: res.sendFile(__dirname + "/index.html");
-	var today = new Date();
-	var options = {
-		weekday: "long",
-		day: "numeric",
-		month: "long",
-	};
-
-	var day = today.toLocaleDateString("en-US", options);
-
+	day = date.getDate();
+	//! render has to include all the variables in this line, because it can not render on post;
 	res.render("list", { kindOfDay: day, newListitems: listItems });
 });
 
 app.post("/", function (req, res) {
 	let listItem = req.body.newItem;
 	listItems.push(listItem);
+	//! redirect, do not render here, only change initial variable here
 	res.redirect("/");
 	console.log(listItem);
+});
+
+app.get("/about", function (req, res) {
+	res.render("about");
 });
 
 app.listen(process.env.PORT || 3000, function () {

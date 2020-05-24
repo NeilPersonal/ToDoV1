@@ -1,32 +1,24 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-	<head>
-		<meta charset="UTF-8" />
-		<link rel="stylesheet" href="css/styles.css" />
-		<title>To Do List</title>
-	</head>
-	<body>
-		<div class="box" id="heading">
-			<h1><%= kindOfDay %></h1>
-		</div>
+<%- include("header") %>
+<div class="box" id="heading">
+	<h1><%= kindOfDay %></h1>
+</div>
 
-		<div class="box">
-			<% for( let index = 0; index < newListitems.length; index++ ) { %>
-			<div class="item">
-				<input type="checkbox" name="" id="" />
-				<p><%= newListitems[index] %></p>
-			</div>
-			<% } %>
+<div class="box">
+	<% for( let index = 0; index < newListitems.length; index++ ) { %>
+	<div class="item">
+		<input type="checkbox" name="" id="" />
+		<p><%= newListitems[index] %></p>
+	</div>
+	<% } %>
 
-			<form class="item" action="/" method="POST">
-				<input
-					type="text"
-					name="newItem"
-					placeholder="Add your list item here."
-					autocomplete="off"
-				/>
-				<button type="submit" name="button">+</button>
-			</form>
-		</div>
-	</body>
-</html>
+	<form class="item" action="/" method="POST">
+		<input
+			type="text"
+			name="newItem"
+			placeholder="Add your list item here."
+			autocomplete="off"
+		/>
+		<button type="submit" name="button">+</button>
+	</form>
+</div>
+<%- include("footer") -%>
